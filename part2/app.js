@@ -13,7 +13,7 @@ const pool = mysql.createPool({
   database: 'DogWalkService'
 });
 
-//Middleware
+// Middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
