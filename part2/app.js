@@ -9,6 +9,7 @@ app.use(session({
   saveUninitialized: true,
   cookie: { secure: false } // for dev only; use true with HTTPS
 }));
+
 // Middleware
 app.use(express.json());
 app.use(express.static(path.join(__dirname, '/public')));
