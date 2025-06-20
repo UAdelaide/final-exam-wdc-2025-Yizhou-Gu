@@ -12,6 +12,7 @@ const pool = mysql.createPool({
   password: '',
   database: 'DogWalkService'
 });
+
 //Middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
