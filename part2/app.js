@@ -3,7 +3,12 @@ const path = require('path');
 require('dotenv').config();
 const session = require('express-session');
 const app = express();
-
+app.use(session({
+  secret: 'dog-walk-secret',
+  resave: false,
+  saveUninitialized: true,
+  cookie: { secure: false } // for dev only; use true with HTTPS
+}));
 // Middleware
 app.use(express.json());
 app.use(express.static(path.join(__dirname, '/public')));
