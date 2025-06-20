@@ -1,12 +1,79 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Express</title>
-    <link rel="stylesheet" href="/stylesheets/style.css">
+  <title>Dog Walkers - Bad UX Demo</title>
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <style>
+    body {
+      background-color: #ff00ff; /* 💥强烈刺眼背景 */
+      color: #00ffff;
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      animation: blink 0.4s infinite alternate;
+    }
+
+    @keyframes blink {
+      0% { background-color: #ff00ff; }
+      100% { background-color: #00ffff; }
+    }
+
+    .button {
+      margin-top: 20px;
+      font-size: 20px;
+      background-color: yellow;
+      color: red;
+      padding: 15px;
+      border-radius: 25px;
+      border: 5px dashed blue;
+    }
+
+    img {
+      width: 500px;
+      height: auto;
+      border: 10px dotted green;
+      margin: 30px;
+    }
+
+    /* Removes all focus outlines for keyboard users */
+    *:focus {
+      outline: none;
+    }
+  </style>
 </head>
 
 <body>
-    <h1>Express</h1>
-    <p>Welcome to Express</p>
+  <div id="app">
+    <h1>DOG OF THE DAY!! 🐶🚀💥</h1>
+    <p><strong>Dog Name:</strong> Sir Barks-a-Lot</p>
+    <p><strong>Breed:</strong> Rainbow Retriever</p>
+    <img v-if="dogImage" :src="dogImage" alt="">
+    <br>
+    <button class="button" @click="fetchDog">CLICK HERE AGAIN! FOR MORE DOGS MAYBE!?! 🐾</button>
+  </div>
+
+  <script>
+    const { createApp } = Vue;
+
+    createApp({
+      data() {
+        return {
+          dogImage: ''
+        };
+      },
+      methods: {
+        async fetchDog() {
+          try {
+            const res = await fetch('https://dog.ceo/api/breeds/image/random');
+            const data = await res.json();
+            this.dogImage = data.message;
+          } catch (error) {
+            console.error('Dog fetch error!', error);
+          }
+        }
+      },
+      mounted() {
+        this.fetchDog();
+      }
+    }).mount('#app');
+  </script>
 </body>
 </html>
