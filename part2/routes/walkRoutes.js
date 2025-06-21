@@ -59,7 +59,7 @@ router.post('/:id/apply', async (req, res) => {
   }
 });
 
-// ✅ NEW: Get dogs for current owner
+//  Get dogs for current owner
 router.get('/my-dogs', async (req, res) => {
   if (!req.session.user || req.session.user.role !== 'owner') {
     return res.status(401).json({ error: 'Not authorized' });
