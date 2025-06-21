@@ -20,7 +20,6 @@
       <div class="card-header bg-primary text-white">Create New Walk Request</div>
       <div class="card-body">
         <form @submit.prevent="submitWalkRequest">
-          <!-- ✅ CHANGED: dropdown instead of numeric input -->
           <div class="mb-3">
             <label class="form-label">Select Your Dog</label>
             <select v-model="form.dog_id" class="form-select" required>
@@ -139,7 +138,7 @@
 
         onMounted(() => {
           loadWalks();
-          loadDogs(); // ✅ 加载狗狗列表
+          loadDogs();
         });
 
         return {
@@ -149,7 +148,7 @@
           error,
           submitWalkRequest,
           logout,
-          dogs 
+          dogs
         };
       }
     }).mount('#app');
