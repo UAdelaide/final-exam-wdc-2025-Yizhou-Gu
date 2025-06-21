@@ -9,13 +9,15 @@
 </head>
 <body class="bg-light">
   <div id="app" class="container py-4">
+    <div class="d-flex justify-content-end mb-3">
+      <button class="btn btn-outline-danger" @click="logout">Logout</button>
+    </div>
+
     <h1 class="mb-4 text-primary">Owner Dashboard</h1>
 
     <!-- Walk request form -->
     <div class="card mb-4">
-      <div class="card-header bg-primary text-white">
-        Create New Walk Request
-      </div>
+      <div class="card-header bg-primary text-white">Create New Walk Request</div>
       <div class="card-body">
         <form @submit.prevent="submitWalkRequest">
           <div class="mb-3">
@@ -56,12 +58,12 @@
               <strong>Duration:</strong> {{ walk.duration_minutes }} minutes<br>
               <strong>Location:</strong> {{ walk.location }}<br>
               <strong>Status:</strong> {{ walk.status }}
-            </p>
+            </p >
           </div>
         </div>
       </div>
     </div>
-    <p v-else>No walk requests yet.</p>
+    <p v-else>No walk requests yet.</p >
   </div>
 
   <script>
@@ -115,6 +117,11 @@
           }
         }
 
+        async function logout() {
+          await fetch('/api/users/logout', { method: 'POST' });
+          window.location.href = '/login.html';
+        }
+
         onMounted(() => {
           loadWalks();
         });
@@ -124,7 +131,8 @@
           walks,
           message,
           error,
-          submitWalkRequest
+          submitWalkRequest,
+          logout
         };
       }
     }).mount('#app');
