@@ -72,17 +72,17 @@ VALUES
 
 INSERT INTO WalkRequests (dog_id, requested_time, duration_minutes, location, status)
 VALUES
-((SELECT dog_id FROM Dogs WHERE name = 'Max' AND owner_id = (SELECT user_id FROM Users WHERE username = 'alice123')), 
+((SELECT dog_id FROM Dogs WHERE name = 'Max' AND owner_id = (SELECT user_id FROM Users WHERE username = 'alice123')),
 '2025-06-10 08:00:00', 30, 'Parklands', 'open'),
 
-((SELECT dog_id FROM Dogs WHERE name = 'Bella' AND owner_id = (SELECT user_id FROM Users WHERE username = 'carol123')), 
+((SELECT dog_id FROM Dogs WHERE name = 'Bella' AND owner_id = (SELECT user_id FROM Users WHERE username = 'carol123')),
 '2025-06-10 09:30:00', 45, 'Beachside Ave', 'accepted'),
 
-((SELECT dog_id FROM Dogs WHERE name = 'Rocky' AND owner_id = (SELECT user_id FROM Users WHERE username = 'alice123')), 
+((SELECT dog_id FROM Dogs WHERE name = 'Rocky' AND owner_id = (SELECT user_id FROM Users WHERE username = 'alice123')),
 '2025-06-11 14:00:00', 60, 'Riverbank Trail', 'open'),
 
-((SELECT dog_id FROM Dogs WHERE name = 'Daisy' AND owner_id = (SELECT user_id FROM Users WHERE username = 'eveowner')), 
+((SELECT dog_id FROM Dogs WHERE name = 'Daisy' AND owner_id = (SELECT user_id FROM Users WHERE username = 'eveowner')),
 '2025-06-12 07:30:00', 20, 'Central Garden', 'open'),
 
-((SELECT dog_id FROM Dogs WHERE name = 'Luna' AND owner_id = (SELECT user_id FROM Users WHERE username = 'carol123')), 
+((SELECT dog_id FROM Dogs WHERE name = 'Luna' AND owner_id = (SELECT user_id FROM Users WHERE username = 'carol123')),
 '2025-06-13 17:00:00', 40, 'North Park', 'cancelled')
