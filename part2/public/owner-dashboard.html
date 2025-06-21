@@ -51,7 +51,9 @@
 
     <!-- List of walk requests -->
     <h2 class="mb-3">My Walk Requests</h2>
+
     <div class="row" v-if="walks.length > 0">
+      
       <div class="col-md-6 mb-4" v-for="walk in walks" :key="walk.request_id">
         <div class="card">
           <div class="card-body">
@@ -69,6 +71,7 @@
     </div>
     <p v-else>No walk requests yet.</p >
   </div>
+
 
   <script>
     const { createApp, ref, onMounted } = Vue;
