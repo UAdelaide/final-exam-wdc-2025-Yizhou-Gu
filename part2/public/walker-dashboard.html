@@ -9,13 +9,15 @@
 </head>
 <body class="bg-light">
   <div id="app" class="container py-4">
+    <div class="d-flex justify-content-end mb-3">
+      <button class="btn btn-outline-danger" @click="logout">Logout</button>
+    </div>
+
     <h1 class="mb-4 text-success">Walker Dashboard</h1>
 
-    <!-- Alert messages -->
     <div v-if="message" class="alert alert-info">{{ message }}</div>
     <div v-if="error" class="alert alert-danger">{{ error }}</div>
 
-    <!-- Walk requests list -->
     <div v-if="walks.length > 0" class="row">
       <div class="col-md-6 mb-4" v-for="walk in walks" :key="walk.request_id">
         <div class="card">
@@ -26,13 +28,13 @@
               <strong>Duration:</strong> {{ walk.duration_minutes }} minutes<br>
               <strong>Location:</strong> {{ walk.location }}<br>
               <strong>Owner:</strong> {{ walk.owner_name }}
-            </p>
-            <button type=button class="btn btn-outline-success" @click="applyToWalk(walk.request_id)">Apply</button>
+            </p >
+            <button type="button" class="btn btn-outline-success" @click="applyToWalk(walk.request_id)">Apply</button>
           </div>
         </div>
       </div>
     </div>
-    <p v-else>No available walk requests at the moment.</p>
+    <p v-else>No available walk requests at the moment.</p >
   </div>
 
   <script>
@@ -74,6 +76,11 @@
           }
         }
 
+        async function logout() {
+          await fetch('/api/users/logout', { method: 'POST' });
+          window.location.href = '/login.html';
+        }
+
         onMounted(() => {
           loadWalkRequests();
         });
@@ -82,7 +89,8 @@
           walks,
           message,
           error,
-          applyToWalk
+          applyToWalk,
+          logout
         };
       }
     }).mount('#app');
